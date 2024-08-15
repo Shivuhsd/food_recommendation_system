@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from . models import UserPersonalData, UserMedicalData
+from . models import UserPersonalData, UserMedicalData, UserDietryData
 
 
 class UserPersonalDataForm(ModelForm):
@@ -12,3 +12,9 @@ class UserMedicalDataForm(ModelForm):
     class Meta:
         model = UserMedicalData
         exclude = ('time_stamp', 'last_updated', 'id', 'user')
+
+
+class UserDeitDataForm(ModelForm):
+    class Meta:
+        model = UserDietryData
+        exclude = ('time_stamp', 'id', 'user')

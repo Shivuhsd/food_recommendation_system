@@ -8,13 +8,35 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 from . models import CustomUser
+# from home.models import UserMedicalData, UserPersonalData
+from . utils import CheckPersonalData, CheckMedicalData
 
 # Create your views here.
+def LoginRegisterRedirect(request):
+    isPersonal = CheckPersonalData(request)
+    isMedical = CheckMedicalData(request)
 
+    if isPersonal:
+        if isMedical:
+            return redirect('home:dashboard')
+        else:
+            return redirect(reverse('home:usermedicaldetails', args=[request.user.id]))
+    else:
+        return redirect(reverse('home:userpersonaldetails', args=[request.user.id]))
 
 def UserLogin(request):
     if request.user.is_authenticated:
-        pass
+        isPersonal = CheckPersonalData(request)
+        isMedical = CheckMedicalData(request)
+
+        if isPersonal:
+            if isMedical:
+                return redirect('home:dashboard')
+            else:
+                return redirect(reverse('home:usermedicaldetails', args=[request.user.id]))
+        else:
+            return redirect(reverse('home:userpersonaldetails', args=[request.user.id]))
+        
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
@@ -24,15 +46,23 @@ def UserLogin(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, 'Succesfully loged in.')
+                isPersonal = CheckPersonalData(request)
+                isMedical = CheckMedicalData(request)
+
+                if isPersonal:
+                    if isMedical:
+                        return redirect('home:dashboard')
+                    else:
+                        return redirect(reverse('home:usermedicaldetails', args=[request.user.id]))
+                else:
+                    return redirect(reverse('home:userpersonaldetails', args=[request.user.id]))
             else:
-                messages.error(request, 'Something went wrong while logging')
+                messages.error(request, 'Check the credentials.')
     return render(request, 'accounts/userlogin.html')
 
 
 
 def UserRegistration(request):
-    if request.user.is_authenticated:
-        pass
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid() and form.match_password:
@@ -56,6 +86,12 @@ def UserRegistration(request):
         else:
             messages.error(request, 'Check email and password you provided.')
     return render(request, 'accounts/userregister.html')
+
+
+
+def UserLogout(request):
+    logout(request)
+    return redirect('userlogin')
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):

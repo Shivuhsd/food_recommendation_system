@@ -1,0 +1,76 @@
+{% extends 'home/personaldata/userpersonaldata.html' %}
+{% load static %}
+    {% block title %}
+        Anemia Medical Information
+    {% endblock %}
+
+    {% block tikpersonal %}
+        text-blue-600 dark:text-blue-500 
+    {% endblock %}
+
+
+
+    {% block personal %}
+    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+    </svg>
+    {% endblock %}
+
+    {% block info %}
+        <form action="" class="py-3 px-3" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+
+            <div class="grid gap-5 grid-cols-3 mb-6">
+                <div>
+                    <label for="hemoglobin_level" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hemoglobin Level (gm/100ml)</label>
+                    <input type="text" id="first_name" name="hemoglobin_level" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=" 12.5 mg/100ml" required />
+                </div>
+                <div>
+                    <label for="blood_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Blood Group</label>
+                    <input type="text" id="blood_type" name="blood_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="o+" required />
+                </div>
+                <div>
+                    <label for="vitamin_b12" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vitamin B12 Levels</label>
+                    <input type="text" id="vitamin_b12" name="vitamin_b12" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="14.3 mg/100ml" required />
+                </div>
+                <div>
+                    <label for="iron_levels" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Iron Levels (dl/100ml)</label>
+                    <input type="text" id="iron_levels" name="iron_levels" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="34 mg/100ml" required />
+                </div>
+                <div>
+                    <label for="rbc_count" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RBC Count (Red Blood Cell)</label>
+                    <input type="text" id="rbc_count" name="rbc_count" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="2 million" required />
+                </div>
+            </div>
+
+            <div class="grid gap-5 grid-cols-2 mb-6 mt-10">
+                <div class="">
+                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medications Details</label>
+                    <textarea name="medications" id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                </div>
+
+                <div class="">
+                    <label for="rbc_count" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Reports</label>
+                    <div class="flex items-center justify-center w-full">
+                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-30 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                            </div>
+                            <input id="dropzone-file" type="file" name="reports" class="hidden" />
+                        </label>
+                    </div> 
+                </div>
+            </div>
+
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        </form>
+    {% endblock %}
+       
+
+    {% block infoscript %}
+
+    {% endblock %}
