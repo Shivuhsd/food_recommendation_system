@@ -1,0 +1,155 @@
+{% load static %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Login Anemia Diet Recommendation System</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="icon" href="{% static 'img/fevicon.jpg' %}">
+		{% tailwind_css %}
+
+        <style>
+            .alert {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .alert-hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none; /* Optional: Prevents interaction when hidden */
+  }
+        </style>
+	</head>
+    <body>
+        
+        <!-- Django Messages with Tailwind alerts -->
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div id="alert-2" class="alert flex items-center p-4 mb-4 
+            {% if message.tags == 'error'%}
+            text-red-800 rounded-lg bg-red-100
+            {% elif message.tags == 'success'%}
+            text-green-800 rounded-lg bg-green-100
+            {% elif message.tags == 'info'%}
+            text-blue-800 rounded-lg bg-blue-100
+            {% elif message.tags == 'warning'%}
+            text-yellow-800 rounded-lg bg-yellow-100
+            {% endif %}" 
+            role="alert">
+                <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div class="ms-3 text-sm font-medium">
+                  {{message}}
+                </div>
+                <button type="button" class="ms-auto -mx-1.5 -my-1.5 
+                {% if message.tags == 'error'%}
+                bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200
+                {% elif message.tags == 'success'%}
+                bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200
+                {% elif message.tags == 'info'%}
+                bg-blue-50 text-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-200
+                {% elif message.tags == 'warning'%}
+                bg-yellow-50 text-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-400 p-1.5 hover:bg-yellow-200
+                {% endif %}
+                 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-2" aria-label="Close">
+                  <span class="sr-only">Close</span>
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                  </svg>
+                </button>
+              </div>
+
+            <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> -->
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+
+
+
+
+
+
+
+
+        <!-- -------------- -->
+
+
+
+        <!-- <div id="alert-2" class="alert flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-100" role="alert">
+            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div class="ms-3 text-sm font-medium">
+              A simple info alert with an <a href="#" class="font-semibold underline hover:no-underline">example link</a>. Give it a click if you like.
+            </div>
+            <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-2" aria-label="Close">
+              <span class="sr-only">Close</span>
+              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+              </svg>
+            </button>
+          </div> -->
+        <div class="flex">
+            <div class="container mx-auto w-auto px-20 my-20">
+                {% block auth %}
+                <form action="" class="items-center" method="POST">
+                    {% csrf_token %}
+                    <!-- <a href="">
+                        <button class="bg-green-400 py-2 px-2 rounded-md text-white"><p class="flex"><svg xmlns="http://www.w3.org/2000/svg"  width="20px" height="20px" viewBox="0 0 576 512">!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.<path d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg><span class="font-extralight mx-0.5"> Home</span></p></button>
+                    <!-- </a>
+                    <p class="text-lg py-2">Anemia</p>  -->
+                    <p class="font-extralight">Anemia</p>
+                    <p class="text-3xl my-5 mb-16">Welcome back..</p>
+                    
+
+                    <label for="" class="font-extralight">Email</label>
+                    <input type="email" name="email" class="mt-0 5 w-80 h-10 rounded-md text-lg" placeholder="anemia@example.com">
+                    <br><br>
+                    <label for="" class="font-extralight">Password</label>
+                    <input type="password" name="password" class="mt-0 5 w-80 h-10 rounded-md text-lg" placeholder="**********">
+                    <br><br>
+                    <button class="w-80 h-10 bg-green-600 text-white text-lg">Login</button>
+
+                    <a href="{% url 'password_reset'%}"><p class="my-5 font-extralight">Forgot password?</p></a>
+
+                    <a href="{% url 'userregistration' %}"><p class="my-5 font-extralight">New around here..? <span class="text-green-600 font-light">Create account</span></p></a>
+                </form>
+                {% endblock %}
+            </div>
+            <div class="">
+                <img src="{% static 'img/bg_login.jpg' %}" alt="" class="h-screen rounded-tl-full">
+            </div>
+        </div>
+    </body>
+    
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dismissButtons = document.querySelectorAll('[data-dismiss-target]');
+  
+      dismissButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const targetSelector = this.getAttribute('data-dismiss-target');
+          const targetElement = document.querySelector(targetSelector);
+          if (targetElement) {
+            targetElement.classList.add('alert-hidden');
+            setTimeout(() => {
+              targetElement.remove(); // Optional: Remove the element from the DOM after the transition
+            }, 300); // Duration should match the CSS transition time
+          }
+        });
+      });
+    });
+  </script>
+  
