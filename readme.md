@@ -1,36 +1,37 @@
-# Main Heading
+# Food Recommendation System 🥗
 
-## Subheading 1
+## Links Available
 
-### Sub-subheading 1
+### Authentication
 
-- [Link to Google](https://www.google.com)
-- [Link to GitHub](https://github.com)
+- [Link to Register](http://127.0.0.1:8000/accounts/registration/)
+- [Link to Login](http://127.0.0.1:8000/accounts/)
+- [Link to Forgot Password](http://127.0.0.1:8000/accounts/password-reset/)
   
-### Sub-subheading 2
+### Information user need to provide
 
-#### Sub-sub-subheading 1
+#### Types of data collected
+- #### 1. Personal Details
+- #### 2. Medical Details
+- #### 3. Deitery Details
 
-- [Internal Link](#subheading-2)
+## About project
 
-## Subheading 2
+### Details
 
-### Sub-subheading 1
+1. The project aims to provide diet recommendations to anemia patients 
 
-- [Another External Link](https://example.com)
-  
-#### Sub-sub-subheading 2
+### Tech stack used
 
-1. First item
-2. Second item
-3. Third item
+1. Django (Full Stack Framework)
+2. Tailwind (CSS framework)
 
-### Additional Resources
 
-- [Documentation](https://example.com/docs)
-- [Tutorials](https://example.com/tutorials)
-- [Community](https://example.com/community)
+### Resources Collected from (images/components)
+
+- [Link to images](https://pixabay.com/)
+- [Link to Tailwind Components](https://flowbite.com)
 
 ## Conclusion
 
-Feel free to add more sections and links as needed.
+Feel free to Download and try it (OpenSource Project)
